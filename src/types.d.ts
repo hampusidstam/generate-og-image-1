@@ -1,8 +1,7 @@
 interface ParsedReqs {
-  author: string;
-  title: string;
-  website: string;
-  image: string;
+  code: string;
+  country: string;
+  team: string;
 }
 
 declare module "puppeteer-core";

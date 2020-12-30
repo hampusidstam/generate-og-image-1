@@ -92,30 +92,44 @@ body {
   font-size: 2em;
   color: #525252;
 }
+.placeholder{
+  width: 200px;
+}
 `;
 }
 
 export function getHtml(parsedReqs: ParsedReqs) {
-  const { author, title, website, image } = parsedReqs;
+  const { code, country, team } = parsedReqs;
 
   return `
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
-  <title>Generated Image</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed&display=swap" rel="stylesheet">
-  <style>
-    ${getCss()}
-  </style>
+  <head>
+    <meta charset="utf-8">
+    <title>Generated Image</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw==" crossorigin="anonymous"></script>
+    <style>
+      ${getCss()}
+    </style>
+  </head>
   <body>
     <div class="container">
-      <div class="title">${title}</div>
+      <div class="title">${country}</div>
+      <div id="placeHolder"></div>
+      <script>
+        var typeNumber = 1;
+        var errorCorrectionLevel = 'L';
+        var qr = qrcode(typeNumber, errorCorrectionLevel);
+        qr.addData('${code}');
+        qr.make();
+        document.getElementById('placeHolder').innerHTML = qr.createImgTag();
+      </script>
       <div class="author">
-        <img src="${image}" class="author-image" />
-        ${author}
+        ${code}
       </div>
-      <div class="website">${website}</div>
+      <span>${team}</span>
     </div>
   </body>
 </html>

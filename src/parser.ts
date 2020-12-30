@@ -3,26 +3,23 @@ import { parse } from "url";
 
 export function parseReqs(req: IncomingMessage) {
   const { query = {} } = parse(req.url || "", true);
-  const { author, title, website, image } = query;
+  const { code, country, team } = query;
 
-  if (Array.isArray(author)) {
-    throw new Error("Author must be string");
+  if (Array.isArray(code)) {
+    throw new Error("Code must be string");
   }
-  if (Array.isArray(title)) {
-    throw new Error("Title must be string");
+  if (Array.isArray(country)) {
+    throw new Error("Country must be string");
   }
-  if (Array.isArray(website)) {
-    throw new Error("Website must be string");
+  if (Array.isArray(team)) {
+    throw new Error("Team must be string");
   }
-  if (Array.isArray(image)) {
-    throw new Error("Image must be string");
-  }
+
 
   const parsedReqs: ParsedReqs = {
-    author,
-    title,
-    website,
-    image
+    code,
+    country,
+    team
   };
 
   console.log(JSON.stringify(parsedReqs));
