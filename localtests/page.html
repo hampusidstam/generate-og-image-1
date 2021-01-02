@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
      <style>
             /* http://meyerweb.com/eric/tools/css/reset/
         v2.0 | 20110126
@@ -64,11 +66,12 @@
         font-size: 18px;
         padding: 20px;
         }
-        .container {
+        .wrapper {
+        font-size: 300%;
         position: relative;
         height: calc(100vh - 40px);
         padding: 20px;
-        background: #f8f8f8;
+        background: #ffffff;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
         }
         /*
@@ -99,28 +102,44 @@
         padding: 20px;
         font-size: 2em;
         color: #525252;
-        } -->
+        } */
     </style>
   </head>
   <body>
-      <div class="container">
-
+    <div class="wrapper">
+      <div class="row">
+        <div class="col text-center">
+          Add me on Pokémon GO
+        </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <div id="qrcode"></div>
+        </div>
+        <div class="col">Test</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Oddish.io
+        </div>
+      </div>
+    </div>
     <!-- <div class="container">
       <div class="title">${country}</div>
       <div id="placeHolder"></div>
-      <script>
-        var typeNumber = 1;
-        var errorCorrectionLevel = 'L';
-        var qr = qrcode(typeNumber, errorCorrectionLevel);
-        qr.addData('${code}');
-        qr.make();
-        document.getElementById('placeHolder').innerHTML = qr.createImgTag();
-      </script>
+      
       <div class="author">
         ${code}
       </div>
       <span>${team}</span>
     </div> -->
+    <script>
+      var typeNumber = 1;
+      var errorCorrectionLevel = 'L';
+      var qr = qrcode(typeNumber, errorCorrectionLevel);
+      qr.addData('123412341234');
+      qr.make();
+      document.getElementById('qrcode').innerHTML = qr.createSvgTag({scalable: false, cellSize: 20, margin: 0});
+    </script>
   </body>
 </html>
